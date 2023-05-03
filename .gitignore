@@ -1,2 +1,6 @@
 .env
 *.pyc
+**/.terraform/*
+
+*.tfstate
+*.tfstate.*
