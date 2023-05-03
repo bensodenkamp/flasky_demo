@@ -11,4 +11,4 @@ RUN pip install -r requirements.txt
 
 COPY . /usr/src/app
 
-ENTRYPOINT ["/bin/sh","-c", "python demo_wsgi.py"]
+ENTRYPOINT ["/bin/sh","-c", "gunicorn --bind 0.0.0.0:5000 demo:app"]
