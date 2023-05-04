@@ -17,8 +17,8 @@ resource "aws_route53_record" "flasky_cert_validation" {
   name            = var.cert_validation_resource_record_name
   records         = var.cert_validation_resource_records
   type            = var.cert_validation_resource_record_type
-  zone_id  = aws_route53_zone.flasky_zone.id
-  ttl      = 5
+  zone_id         = aws_route53_zone.flasky_zone.id
+  ttl             = 5
 }
 
 # This tells terraform to cause the route53 validation to happen

@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "flasky-repo" {
-  name			= "flasky-repo"
+  name			            = "flasky-repo"
   image_tag_mutability	= "MUTABLE"
 }
 
@@ -34,7 +34,7 @@ resource "aws_iam_openid_connect_provider" "github" {
 
 data "aws_iam_policy_document" "github_actions_assume_role" {
   statement {
-    actions = ["sts:AssumeRoleWithWebIdentity"]
+    actions       = ["sts:AssumeRoleWithWebIdentity"]
     principals {
       type        = "Federated"
       identifiers = [aws_iam_openid_connect_provider.github.arn]

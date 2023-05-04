@@ -26,9 +26,9 @@ resource "aws_security_group" "lb_sg" {
 }
 
 resource "aws_security_group" "lb_sg_http" {
-  name		= "allow-tcp-port-80"
-  description   = "Allow clear traffic"
-  vpc_id	= var.vpc_id
+  name		    = "allow-tcp-port-80"
+  description = "Allow clear traffic"
+  vpc_id	    = var.vpc_id
 
   ingress {
     description      = "CLEAR"
@@ -57,10 +57,10 @@ resource "aws_alb" "flasky_lb" {
 resource "aws_alb_listener" "alb_frontend_http" {
   load_balancer_arn	=	aws_alb.flasky_lb.arn
   port			=	"80"
-	protocol		=	"HTTP"
+	protocol	=	"HTTP"
 
   default_action {
-    type = "redirect"
+    type    = "redirect"
 
     redirect {
       port        = "443"
@@ -81,9 +81,9 @@ resource "aws_lb_target_group" "flasky_demo" {
 resource "aws_alb_listener" "alb_front_https" {
 	load_balancer_arn	=	aws_alb.flasky_lb.arn
   certificate_arn   = var.cert_arn
-	port			=	"443"
-	protocol		=	"HTTPS"
-	ssl_policy		=	"ELBSecurityPolicy-2016-08"
+	port			        =	"443"
+	protocol		      =	"HTTPS"
+	ssl_policy		    =	"ELBSecurityPolicy-2016-08"
 
   default_action {
     target_group_arn = aws_lb_target_group.flasky_demo.id

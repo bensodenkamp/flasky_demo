@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ecs_task_execution_role" {
-  name = "flasky-exec-role"
+  name               = "flasky-exec-role"
  
   assume_role_policy = <<EOF
 {
@@ -56,9 +56,9 @@ resource "aws_ecs_cluster" "flasky-cluster" {
 }
 
 resource "aws_security_group" "ecs_sg" {
-  name		= "allow-tcp-port-5000-from-lb"
+  name		      = "allow-tcp-port-5000-from-lb"
   description   = "Allow web traffic from lb"
-  vpc_id             = var.vpc_id
+  vpc_id        = var.vpc_id
   
   ingress {
     description      = "WEB"

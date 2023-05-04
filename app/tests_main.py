@@ -16,7 +16,7 @@ class Tests(unittest.TestCase):
         # print (response.data)
         self.assertEqual(
             response.data,
-            b"<p>Hello, World!</p>",
+            b"<p>Hello, World - Update 1</p>",
         )
         self.assertEqual(response.status_code, 200)
 

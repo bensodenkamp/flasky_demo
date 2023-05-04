@@ -37,8 +37,8 @@ module "flasky_loadbalancer" {
     vpc_id              = module.flasky_vpc.vpc_id
     private_subnet_1_id = module.flasky_vpc.private_subnet_1_id
     private_subnet_2_id = module.flasky_vpc.private_subnet_2_id
-    public_subnet_1_id    = module.flasky_vpc.public_subnet_1_id
-    public_subnet_2_id    = module.flasky_vpc.public_subnet_2_id
+    public_subnet_1_id  = module.flasky_vpc.public_subnet_1_id
+    public_subnet_2_id  = module.flasky_vpc.public_subnet_2_id
 }
 
 module "dns" {
@@ -60,10 +60,10 @@ module "dns" {
 }
 
 module ecs {
-  vpc_id              = module.flasky_vpc.vpc_id
+  vpc_id          = module.flasky_vpc.vpc_id
   source          = "../modules/ecs"
   repo_url        = module.ecr.repo_url
-  lb_sg_id       = module.flasky_loadbalancer.lb_sg_id
+  lb_sg_id        = module.flasky_loadbalancer.lb_sg_id
   subnet_1_id     = module.flasky_vpc.private_subnet_1_id
   subnet_2_id     = module.flasky_vpc.private_subnet_2_id
   target_group_id = module.flasky_loadbalancer.lb_target_group_id
