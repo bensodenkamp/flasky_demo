@@ -39,9 +39,7 @@ jobs:
         images: 689030005997.dkr.ecr.us-west-2.amazonaws.com/flasky-repo
         tags: |
           type=schedule,pattern=latest
-          type=semver,pattern={{version}}
-          type=semver,pattern={{major}}.{{minor}}
-          type=semver,pattern={{major}}
+          type=semver,pattern={{major}}.{{minor}}.{{patch}}
           type=ref,event=branch
 
     - name: Build and push Docker image
@@ -51,9 +49,8 @@ jobs:
       with:
         context: ./app
         push: true
-        platforms: linux/amd64
-        tags: |
-          689030005997.dkr.ecr.us-west-2.amazonaws.com/flasky-repo:latest
+        platforms: linux/amd64,linux/arm64
+        tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
     
 
