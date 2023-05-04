@@ -1,3 +1,4 @@
+"""Module providingFunction Unit Tests"""
 import unittest
 
 from demo import app
