@@ -5,7 +5,8 @@ from demo import app
 
 
 class Tests(unittest.TestCase):
-    """ Unit test class"""
+    """Unit test class"""
+
     def setUp(self):
         self.app = app.test_client()
 
