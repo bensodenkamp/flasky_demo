@@ -24,6 +24,13 @@ data "aws_iam_policy_document" "github_actions" {
     ]
     resources = ["*"]
   }
+
+  statement {
+    actions = [
+      "ecs: RegisterTaskDefinition"
+    ]
+    resources = ["*"]
+  }
 }
 
 resource "aws_iam_openid_connect_provider" "github" {
