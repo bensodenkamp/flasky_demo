@@ -16,4 +16,5 @@ jobs:
         with:
           python-version: '3.10' 
       - run: pip install -r app/requirements.txt  # install requirements to enable GitHub run tests
+      - run: pwd
       - run: python app/test_main.py
