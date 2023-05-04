@@ -25,3 +25,7 @@ jobs:
         run: python app/tests_main.py
       - name: Security vulnerabilities scan
         uses: aufdenpunkt/python-safety-check@master
+      - name: Python Linter
+        uses: sunnysid3up/python-linter@master
+        with:
+          source: "app"
