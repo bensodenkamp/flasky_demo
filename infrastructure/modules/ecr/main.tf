@@ -27,9 +27,29 @@ data "aws_iam_policy_document" "github_actions" {
 
   statement {
     actions = [
-      "ecs: RegisterTaskDefinition"
+      "ecs:RegisterTaskDefinition"
     ]
     resources = ["*"]
+  }
+
+  statement {
+    actions = [
+      "iam:PassRole"
+    ]
+    resources = [
+       "arn:aws:iam::689030005997:role/flasky-exec-role"
+    ]
+  }
+
+  statement {
+    actions = [
+      "ecs:UpdateService",
+      "ecs:DescribeServices"
+    ]
+
+    resources = [
+      "arn:aws:ecs:us-west-2:689030005997:service/flasky-cluster/flasky_demo-service"
+    ]
   }
 }
 
