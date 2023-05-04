@@ -6,7 +6,7 @@ on:
 env:
   ECS_SERVICE: flasky_demo-service
   ECS_CLUSTER: flasky-cluster
-  ECS_TASK_DEFINITION: flasky_demo
+  ECS_TASK_DEFINITION: ecs_task_def.json
   CONTAINER_NAME: flasky_demo
 
 jobs:
