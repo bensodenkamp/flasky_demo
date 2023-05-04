@@ -5,10 +5,12 @@ from demo import app
 
 
 class Tests(unittest.TestCase):
+    """ Unit test class"""
     def setUp(self):
         self.app = app.test_client()
 
     def test_app_endpoint(self):
+        """Test the / endpoint"""
         response = self.app.get("/")
         # print (response.data)
         self.assertEqual(
