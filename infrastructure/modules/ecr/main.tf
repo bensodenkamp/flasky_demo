@@ -1,6 +1,6 @@
 resource "aws_ecr_repository" "flasky-repo" {
   name			= "flasky-repo"
-  image_tag_mutability	= "IMMUTABLE"
+  image_tag_mutability	= "MUTABLE"
 }
 
 
