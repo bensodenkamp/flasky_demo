@@ -70,6 +70,14 @@ resource "aws_alb_listener" "alb_frontend_http" {
   }
 }
 
+resource "aws_lb_target_group" "flasky_demo" {
+  name        = "ecs-target-group"
+  port        = 5000
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
+  target_type = "ip"
+}
+
 resource "aws_alb_listener" "alb_front_https" {
 	load_balancer_arn	=	aws_alb.flasky_lb.arn
   certificate_arn   = var.cert_arn
@@ -77,15 +85,10 @@ resource "aws_alb_listener" "alb_front_https" {
 	protocol		=	"HTTPS"
 	ssl_policy		=	"ELBSecurityPolicy-2016-08"
 
-	  default_action {
-    type = "fixed-response"
-
-    fixed_response {
-      content_type = "text/plain"
-      message_body = "Not Found"
-      status_code  = "404"
-    }
-	}
+  default_action {
+    target_group_arn = aws_lb_target_group.flasky_demo.id
+    type             = "forward"
+  }
 
 }
 
@@ -98,10 +101,18 @@ output "lb_sg_id" {
   value = aws_security_group.lb_sg.id
 }
 
+output "lb_sg_http_id" {
+  value = aws_security_group.lb_sg_http.id
+}
+
 output "lb_dns_name" {
   value = aws_alb.flasky_lb.dns_name
 }
 
 output "lb_zone_id" {
   value = aws_alb.flasky_lb.zone_id
+}
+
+output "lb_target_group_id" {
+  value = aws_lb_target_group.flasky_demo.id
 }
