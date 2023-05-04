@@ -36,7 +36,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v3
       with:
-        images: 689030005997.dkr.ecr.us-west-2.amazonaws.com/flasky-repo
+        images: 689030005997.dkr.ecr.us-west-2.amazonaws.com/flasky-repo:flasky
         tags: |
           type=schedule,pattern=latest
           type=semver,pattern={{version}}
