@@ -7,7 +7,7 @@ env:
   ECS_SERVICE: flasky_demo-service
   ECS_CLUSTER: flasky-cluster
   ECS_TASK_DEFINITION: ecs_task_def.json
-  CONTAINER_NAME: 689030005997.dkr.ecr.us-west-2.amazonaws.com/flasky-repo
+  CONTAINER_NAME: flasky_demo
 
 jobs:
   validate:
