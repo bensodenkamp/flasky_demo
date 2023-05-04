@@ -6,7 +6,7 @@ on:
 
 jobs:
   validate:
-    uses: ./.github/workflows/validate.yml
+    uses: ./.github/workflows/validate.yaml
   
   deploy:
     runs-on: ubuntu-latest
