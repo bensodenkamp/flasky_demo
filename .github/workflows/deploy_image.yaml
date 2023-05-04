@@ -27,6 +27,10 @@ jobs:
       with:
         role-to-assume: arn:aws:iam::689030005997:role/github-actions-flasky-deployment
         aws-region: us-west-2
+  
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
 
     - name: Extract metadata (tags, labels) for Docker
       id: meta
