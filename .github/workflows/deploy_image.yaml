@@ -36,7 +36,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v3
       with:
-        images: 689030005997.dkr.ecr.us-west-2.amazonaws.com/flasky-repo/flasky
+        images: 689030005997.dkr.ecr.us-west-2.amazonaws.com/flasky-repo
         tags: |
           type=schedule,pattern=latest
           type=semver,pattern={{version}}
@@ -45,12 +45,15 @@ jobs:
           type=ref,event=branch
 
     - name: Build and push Docker image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
       uses: docker/build-push-action@v4
       with:
         context: ./app
         push: true
         platforms: linux/amd64
-        tags: ${{ steps.meta.outputs.tags }}
+        tags: |
+          $ECR_REGISTRY/flasky-repo/latest
         labels: ${{ steps.meta.outputs.labels }}
     
 
