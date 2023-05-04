@@ -50,6 +50,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: flasky-repo
       uses: docker/build-push-action@v4
       with:
         context: ./app
@@ -57,6 +58,9 @@ jobs:
         platforms: linux/amd64
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
+      
+    - name: Store Image
+      run: echo "image=689030005997.dkr.ecr.us-west-2.amazonaws.com/flasky-repo:flasky_demo" >> $GITHUB_OUTPUT
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
