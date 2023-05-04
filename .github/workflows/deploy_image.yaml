@@ -53,7 +53,7 @@ jobs:
         push: true
         platforms: linux/amd64
         tags: |
-          $ECR_REGISTRY/flasky-repo/latest
+          689030005997.dkr.ecr.us-west-2.amazonaws.com/flasky-repo/latest
         labels: ${{ steps.meta.outputs.labels }}
     
 
