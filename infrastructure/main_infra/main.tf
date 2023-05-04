@@ -6,6 +6,11 @@ module "ecr" {
   source  = "../modules/ecr"
 }
 
+module "github_actions" {
+  source  = "../modules/github_actions"
+  repo_arn = module.ecr.repo_arn
+}
+
 module "flasky_vpc" {
   source  = "../modules/vpc"
   aws_region = var.aws_region
