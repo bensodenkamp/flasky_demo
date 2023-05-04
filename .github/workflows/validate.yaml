@@ -12,9 +12,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.10' 
-      - run: pip install -r app/requirements.txt  # install requirements to enable GitHub run tests
-      - run: pwd
-      - run: python app/tests_main.py
+          python-version: '3.10'
+      - name: Run pip
+        run: pip install -r app/requirements.txt  # install requirements to enable GitHub run tests
+      - name: Do Unit Tests
+        run: python app/tests_main.py
+      - name: Security vulnerabilities scan
+        uses: aufdenpunkt/python-safety-check@master
