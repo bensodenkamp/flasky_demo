@@ -44,6 +44,12 @@ data "aws_iam_policy_document" "github_actions_assume_role" {
       variable = "token.actions.githubusercontent.com:sub"
       values   = ["repo:bensodenkamp/flasky_demo:*"]
     }
+
+    condition {
+      test      = "StringEquals"
+      variable  = "token.actions.githubusercontent.com:aud"
+      values    = ["sts.amazonaws.com"]
+    }
   }
 }
 
