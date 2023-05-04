@@ -59,7 +59,8 @@ jobs:
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
       
-    - name: Store Image
+    - name: Store Image URI
+      id: store_image_uri
       run: echo "image=689030005997.dkr.ecr.us-west-2.amazonaws.com/flasky-repo:flasky_demo" >> $GITHUB_OUTPUT
 
     - name: Fill in the new image ID in the Amazon ECS task definition
@@ -68,7 +69,7 @@ jobs:
       with:
         task-definition: ${{ env.ECS_TASK_DEFINITION }}
         container-name: ${{ env.CONTAINER_NAME }}
-        image: ${{ steps.build-image.outputs.imageid }}
+        image: ${{ steps.store_image_uri.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@df9643053eda01f169e64a0e60233aacca83799a
